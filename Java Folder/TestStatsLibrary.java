@@ -5,5 +5,7 @@ public class TestStatsLibrary {
         stats.printMean();
         stats.printVariance();
         stats.printStandardDev();
+        stats.printSortedDataset();
+        stats.printMedian();
     }
 }

@@ -7,8 +7,10 @@ public class StatsLibrary {
     private double sqrsum;
     private double variance;
     private double stnddev;
+    private double median;
     private int n;
     private int x;
+    private int middle;
     private ArrayList<Double> dataset;
     private ArrayList<Double> deviation;
     private ArrayList<Double> sqrdeviation;
@@ -20,8 +22,10 @@ public class StatsLibrary {
         sqrsum = 0;
         variance = 0;
         stnddev = 0;
+        median = 0;
         n = 0;
         x = 0;
+        middle = 0;
         dataset = new ArrayList<>();
         deviation = new ArrayList<>();
         sqrdeviation = new ArrayList<>();
@@ -33,6 +37,7 @@ public class StatsLibrary {
         return dataset;
     }
 
+    //This prints out your dataset
     public void printDataset(){
         if(n<1){
             getDataSet();
@@ -43,7 +48,19 @@ public class StatsLibrary {
         }
         System.out.println();
     }
-    
+
+    //This prints out your sorted dataset
+    public void printSortedDataset(){
+        if(n<1){
+            getDataSet();
+        }
+        dataset.sort(null);
+        System.out.println("This is your  sorted dataset: ");
+        for(double num : dataset){
+            System.out.print(num + ", ");
+        }
+        System.out.println();
+    }
     //Finds the mean of your dataset
     public double mean(){
         if (n<1){
@@ -62,6 +79,7 @@ public class StatsLibrary {
         System.out.println("This is your Mean: " + mean());
     }
 
+    //This finds your variance
     public double variance(){
         if(mean == 0){
             mean = mean();
@@ -78,7 +96,7 @@ public class StatsLibrary {
             num = Math.pow(num, 2);
             sqrdeviation.add(num);
         }
-        //This adds squared balues together
+        //This adds squared values together
         sqrsum = 0;
         for(double num : sqrdeviation){
             sqrsum += num;
@@ -108,5 +126,25 @@ public class StatsLibrary {
     //This prints the standard deviation
     public void printStandardDev(){
         System.out.println("This is your standard Deviation: " + standardDev());
+    }
+
+    //This finds your median
+    public double median(){
+        if (n<1){
+            getDataSet();
+        }
+        dataset.sort(null);
+        if (n % 2 == 1){
+            middle = n/2;
+            median = dataset.get(middle);
+        }else if(n % 2 == 0){
+            median = (dataset.get((n-1)/2)+dataset.get(n/2))/2.0;
+        }
+        return median;
+    }
+    
+    //This prints your median
+    public void printMedian(){
+        System.out.println("This is the median of your dataset: " + median());
     }
 }
