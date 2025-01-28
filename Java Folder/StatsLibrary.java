@@ -8,28 +8,44 @@ public class StatsLibrary {
     private double variance;
     private double stnddev;
     private double median;
+    private double mode;
+    private double number;
     private int n;
     private int x;
     private int middle;
+    private int maxNum;
+    private int count;
     private ArrayList<Double> dataset;
     private ArrayList<Double> deviation;
     private ArrayList<Double> sqrdeviation;
+    private ArrayList<Double> modelist;
 
     //Constructor
     public StatsLibrary(){
+        //Doubles
         sum = 0;
         mean = 0;
         sqrsum = 0;
         variance = 0;
         stnddev = 0;
         median = 0;
+        number = 0;
+        //Ints
         n = 0;
         x = 0;
         middle = 0;
+        maxNum = 0;
+        mode = 0;
+        count = 0;
+        //Arrays
         dataset = new ArrayList<>();
         deviation = new ArrayList<>();
         sqrdeviation = new ArrayList<>();
+        modelist = new ArrayList<>();
     }
+
+
+
     //Gets the dataset from DataInput Class
     public ArrayList<Double> getDataSet(){
         dataset = data.dataInput();
@@ -61,6 +77,10 @@ public class StatsLibrary {
         }
         System.out.println();
     }
+
+
+
+
     //Finds the mean of your dataset
     public double mean(){
         if (n<1){
@@ -78,6 +98,8 @@ public class StatsLibrary {
     public void printMean(){
         System.out.println("This is your Mean: " + mean());
     }
+
+
 
     //This finds your variance
     public double variance(){
@@ -112,6 +134,8 @@ public class StatsLibrary {
         System.out.println("This is your variance: " + variance());
     }
 
+
+
     //This finds the Standard Deviation
     public double standardDev(){
         if (mean == 0){
@@ -127,6 +151,8 @@ public class StatsLibrary {
     public void printStandardDev(){
         System.out.println("This is your standard Deviation: " + standardDev());
     }
+
+
 
     //This finds your median
     public double median(){
@@ -146,5 +172,38 @@ public class StatsLibrary {
     //This prints your median
     public void printMedian(){
         System.out.println("This is the median of your dataset: " + median());
+    }
+
+
+
+    //This will get the mode of your dataset
+    public double mode(){
+        modelist.clear();
+        if (n<1){
+            getDataSet();
+        }
+        for(double values : dataset){
+            modelist.add(values);
+        }
+        for(int i = 0; i < dataset.size(); i++){
+            number = dataset.get(i);
+            count = 0;
+            for (double value : modelist){
+                if (value == number){
+                    count++;
+                }
+            }
+            if (count > maxNum){
+                maxNum = count;
+                mode = number;
+            }
+        }
+
+        return mode;
+    }
+
+    //This prints the mode
+    public void printMode(){
+        System.out.println("The mode of your dataset was: " + mode());
     }
 }

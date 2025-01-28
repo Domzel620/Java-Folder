@@ -7,5 +7,6 @@ public class TestStatsLibrary {
         stats.printStandardDev();
         stats.printSortedDataset();
         stats.printMedian();
+        stats.printMode();
     }
 }
