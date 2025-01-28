@@ -8,5 +8,6 @@ public class TestStatsLibrary {
         stats.printSortedDataset();
         stats.printMedian();
         stats.printMode();
+        System.out.println(stats.printedMedian());
     }
 }

@@ -2,6 +2,12 @@ import java.util.ArrayList;
 
 public class StatsLibrary {
     DataInput data = new DataInput();
+    //Global Variables
+    private int n;
+    private int x;
+    private int middle;
+    private int maxNum;
+    private int count;
     private double sum;
     private double mean;
     private double sqrsum;
@@ -10,18 +16,20 @@ public class StatsLibrary {
     private double median;
     private double mode;
     private double number;
-    private int n;
-    private int x;
-    private int middle;
-    private int maxNum;
-    private int count;
     private ArrayList<Double> dataset;
     private ArrayList<Double> deviation;
-    private ArrayList<Double> sqrdeviation;
-    private ArrayList<Double> modelist;
+    private ArrayList<Double> sqrDeviation;
+    private ArrayList<Double> modeList;
 
     //Constructor
     public StatsLibrary(){
+        //Ints
+        n = 0;
+        x = 0;
+        middle = 0;
+        maxNum = 0;
+        mode = 0;
+        count = 0;
         //Doubles
         sum = 0;
         mean = 0;
@@ -30,18 +38,11 @@ public class StatsLibrary {
         stnddev = 0;
         median = 0;
         number = 0;
-        //Ints
-        n = 0;
-        x = 0;
-        middle = 0;
-        maxNum = 0;
-        mode = 0;
-        count = 0;
         //Arrays
         dataset = new ArrayList<>();
         deviation = new ArrayList<>();
-        sqrdeviation = new ArrayList<>();
-        modelist = new ArrayList<>();
+        sqrDeviation = new ArrayList<>();
+        modeList = new ArrayList<>();
     }
 
 
@@ -55,7 +56,7 @@ public class StatsLibrary {
 
     //This prints out your dataset
     public void printDataset(){
-        if(n<1){
+        if(n==0){
             getDataSet();
         }
         System.out.println("This is your dataset: ");
@@ -67,7 +68,7 @@ public class StatsLibrary {
 
     //This prints out your sorted dataset
     public void printSortedDataset(){
-        if(n<1){
+        if(n==0){
             getDataSet();
         }
         dataset.sort(null);
@@ -83,7 +84,7 @@ public class StatsLibrary {
 
     //Finds the mean of your dataset
     public double mean(){
-        if (n<1){
+        if (n==0){
             getDataSet();
         }
         sum = 0;
@@ -107,7 +108,7 @@ public class StatsLibrary {
             mean = mean();
         }
         deviation.clear();
-        sqrdeviation.clear();
+        sqrDeviation.clear();
         //This subtracts the mean
         for(double numbers : dataset){
             numbers = numbers - mean;
@@ -116,11 +117,11 @@ public class StatsLibrary {
         //Squares the subtracted values and adds them to a new list
         for(double num : deviation){
             num = Math.pow(num, 2);
-            sqrdeviation.add(num);
+            sqrDeviation.add(num);
         }
         //This adds squared values together
         sqrsum = 0;
-        for(double num : sqrdeviation){
+        for(double num : sqrDeviation){
             sqrsum += num;
         }
         //This finds the Variance
@@ -156,7 +157,7 @@ public class StatsLibrary {
 
     //This finds your median
     public double median(){
-        if (n<1){
+        if (n==0){
             getDataSet();
         }
         dataset.sort(null);
@@ -173,22 +174,25 @@ public class StatsLibrary {
     public void printMedian(){
         System.out.println("This is the median of your dataset: " + median());
     }
+    public String printedMedian(){
+        return ("This is the median of your dataset: " + median());
+    }
 
 
 
     //This will get the mode of your dataset
     public double mode(){
-        modelist.clear();
-        if (n<1){
+        modeList.clear();
+        if (n==0){
             getDataSet();
         }
         for(double values : dataset){
-            modelist.add(values);
+            modeList.add(values);
         }
         for(int i = 0; i < dataset.size(); i++){
             number = dataset.get(i);
             count = 0;
-            for (double value : modelist){
+            for (double value : modeList){
                 if (value == number){
                     count++;
                 }
