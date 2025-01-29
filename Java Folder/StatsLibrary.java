@@ -2,12 +2,13 @@ import java.util.ArrayList;
 
 public class StatsLibrary {
     DataInput data = new DataInput();
-    //Global Variables
+    /*Global Variables
     private int n;
     private int x;
     private int middle;
     private int maxNum;
     private int count;
+
     private double sum;
     private double mean;
     private double sqrsum;
@@ -16,10 +17,12 @@ public class StatsLibrary {
     private double median;
     private double mode;
     private double number;
+
     private ArrayList<Double> dataset;
     private ArrayList<Double> deviation;
     private ArrayList<Double> sqrDeviation;
     private ArrayList<Double> modeList;
+    
 
     //Constructor
     public StatsLibrary(){
@@ -43,7 +46,7 @@ public class StatsLibrary {
         deviation = new ArrayList<>();
         sqrDeviation = new ArrayList<>();
         modeList = new ArrayList<>();
-    }
+    }*/
 
 
 
@@ -94,10 +97,21 @@ public class StatsLibrary {
         mean = sum/n;
         return mean;
     }
-
+    public double getMean(){
+        if(mean == 0){
+            mean();
+        }
+        return mean;
+    }
     //Prints the Mean
     public void printMean(){
         System.out.println("This is your Mean: " + mean());
+    }
+    public String printedMean(){
+        if(mean == 0){
+            mean();
+        }
+        return ("This is your mean: " + mean);
     }
 
 
@@ -174,6 +188,7 @@ public class StatsLibrary {
     public void printMedian(){
         System.out.println("This is the median of your dataset: " + median());
     }
+
     public String printedMedian(){
         return ("This is the median of your dataset: " + median());
     }
